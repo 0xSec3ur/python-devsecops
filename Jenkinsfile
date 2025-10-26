@@ -124,8 +124,14 @@ pipeline {
                 script {
                     echo 'Deploying application with Docker Compose...'
                     sh '''
-                        docker-compose down || true
-                        docker-compose up -d
+                        # Stop and remove existing containers
+                        docker-compose down -v || true
+                        
+                        # Remove any orphaned containers with the same name
+                        docker rm -f flask-devsecops-app || true
+                        
+                        # Start fresh deployment
+                        docker-compose up -d --force-recreate
                     '''
                 }
             }
