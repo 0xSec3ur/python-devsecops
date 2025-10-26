@@ -63,8 +63,8 @@ pipeline {
                     echo 'Running Bandit security scanner...'
                     sh '''
                         . venv/bin/activate
-                        bandit -r . -f json -o bandit-report.json || true
-                        bandit -r . || true
+                        bandit -r . -x ./venv,./logs,./.git -f json -o bandit-report.json || true
+                        bandit -r . -x ./venv,./logs,./.git || true
                     '''
                 }
             }
