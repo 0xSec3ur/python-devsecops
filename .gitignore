@@ -45,7 +45,7 @@ logs/
 *.swo
 
 # Docker
-.dockerignore
+#.dockerignore
 
 # OS
 .DS_Store
